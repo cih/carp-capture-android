@@ -10,7 +10,8 @@
     <item
         android:id="@+id/action_captures"
         android:title="@string/action_captures"
-        android:orderInCategory="100" app:showAsAction="never" />
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_settings"
