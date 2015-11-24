@@ -6,6 +6,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.simple.JSONValue;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -25,7 +27,11 @@ class GetLakes extends AsyncTask<String, Void, String> {
         try {
             Response response = client.newCall(request).execute();
             System.out.println(response);
-            return response.body().string();
+            String responseBody = response.body().string();
+            Object obj = JSONValue.parse(responseBody);
+            System.out.println(responseBody);
+            System.out.println(obj);
+            return responseBody;
         } catch (Exception e) {
             System.out.println(e);
             System.out.println(e.getMessage());
