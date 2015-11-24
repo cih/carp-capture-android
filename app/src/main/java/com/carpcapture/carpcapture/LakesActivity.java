@@ -46,6 +46,12 @@ public class LakesActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_lakes) {
+            Intent intent = new Intent(this, LakesListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
 
     }
