@@ -1,6 +1,7 @@
 package com.carpcapture.carpcapture;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 public class LakesActivity extends AppCompatActivity {
 
@@ -47,8 +54,15 @@ public class LakesActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_lakes) {
+            GetLakes example = new GetLakes();
+
+
+            AsyncTask response = example.execute("https://carp-capture-api.herokuapp.com/lakes.json");
+
+
             Intent intent = new Intent(this, LakesListActivity.class);
             startActivity(intent);
+//            intent.putExtra("lakes_response", response);
             return true;
         }
 
