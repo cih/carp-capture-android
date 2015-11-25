@@ -1,6 +1,8 @@
 package com.carpcapture.carpcapture;
 
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -16,7 +18,12 @@ import java.util.Objects;
 /**
  * Created by chris on 24/11/15.
  */
-class GetLakes extends AsyncTask<String, Void, String> {
+class GetLakes extends AsyncTask<String, String, String> {
+    private LakesListActivity lakeList;
+
+    public GetLakes(LakesListActivity lakesListActivity) {
+       lakeList = lakesListActivity;
+    }
 
     @Override
     protected String doInBackground(String[] url) {
@@ -39,5 +46,18 @@ class GetLakes extends AsyncTask<String, Void, String> {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+
+        String names[] = {"Hadleigh Res","Blue Lagoon","Piggeries"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(lakeList,
+                android.R.layout.simple_list_item_1, names);
+
+        ListView listView = (ListView) lakeList.findViewById(R.id.lakes_list);
+        listView.setAdapter(adapter);
     }
 }

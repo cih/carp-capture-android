@@ -1,5 +1,6 @@
 package com.carpcapture.carpcapture;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,12 +55,6 @@ public class LakesActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_lakes) {
-            GetLakes example = new GetLakes();
-
-
-            AsyncTask response = example.execute("https://carp-capture-api.herokuapp.com/lakes.json");
-
-
             Intent intent = new Intent(this, LakesListActivity.class);
             startActivity(intent);
 //            intent.putExtra("lakes_response", response);

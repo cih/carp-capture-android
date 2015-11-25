@@ -1,5 +1,6 @@
 package com.carpcapture.carpcapture;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,13 +25,9 @@ public class LakesListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String names[] = {"Hadleigh Res","Blue Lagoon","Piggeries"};
+        GetLakes example = new GetLakes(this);
+        example.execute("https://carp-capture-api.herokuapp.com/lakes.json");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, names);
-
-        ListView listView = (ListView) findViewById(R.id.lakes_list);
-        listView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
