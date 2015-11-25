@@ -16,7 +16,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-public class LakesListActivity extends AppCompatActivity {
+public class LakesListActivity extends MenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
