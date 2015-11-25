@@ -15,7 +15,7 @@ public class CapturesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_captures);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
 }

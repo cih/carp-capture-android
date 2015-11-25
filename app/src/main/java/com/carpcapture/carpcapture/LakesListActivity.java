@@ -28,6 +28,6 @@ public class LakesListActivity extends AppCompatActivity {
         GetLakes example = new GetLakes(this);
         example.execute("https://carp-capture-api.herokuapp.com/lakes.json");
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 }
