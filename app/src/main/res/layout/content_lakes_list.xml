@@ -10,16 +10,11 @@
     tools:showIn="@layout/activity_lakes_list"
     tools:context="com.carpcapture.carpcapture.LakesListActivity">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Lakes list!"
-        android:id="@+id/textView3"
+        android:id="@+id/lakes_list"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="44dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="143dp" />
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
