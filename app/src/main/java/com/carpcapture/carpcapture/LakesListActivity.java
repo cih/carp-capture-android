@@ -28,15 +28,6 @@ public class LakesListActivity extends AppCompatActivity {
         GetLakes example = new GetLakes(this);
         example.execute("https://carp-capture-api.herokuapp.com/lakes.json");
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

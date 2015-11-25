@@ -1,6 +1,9 @@
 package com.carpcapture.carpcapture;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -57,7 +60,16 @@ class GetLakes extends AsyncTask<String, String, String> {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(lakeList,
                 android.R.layout.simple_list_item_1, names);
 
-        ListView listView = (ListView) lakeList.findViewById(R.id.lakes_list);
+        final ListView listView = (ListView) lakeList.findViewById(R.id.lakes_list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent;
+                intent = new Intent(lakeList, MapsActivity.class);
+                lakeList.startActivity(intent);
+
+            }
+        });
     }
 }
