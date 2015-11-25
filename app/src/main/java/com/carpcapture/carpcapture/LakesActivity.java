@@ -27,5 +27,9 @@ public class LakesActivity extends MenuActivity {
         setContentView(R.layout.activity_lakes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.carpicon);
     }
 }

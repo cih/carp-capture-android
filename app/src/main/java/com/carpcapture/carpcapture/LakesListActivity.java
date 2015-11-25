@@ -29,5 +29,8 @@ public class LakesListActivity extends MenuActivity {
         example.execute("https://carp-capture-api.herokuapp.com/lakes.json");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.carpicon);
     }
 }
