@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CARPCAPTURE</string>
+    <string name="app_name">CarpCapture</string>
     <string name="action_lakes">Lakes</string>
     <string name="action_captures">Captures</string>
     <string name="action_settings">Settings</string>
