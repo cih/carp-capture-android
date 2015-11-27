@@ -2,6 +2,7 @@ package com.carpcapture.carpcapture;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 import org.json.simple.JSONValue;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -38,11 +40,11 @@ class GetLakes extends AsyncTask<String, String, String> {
 
         try {
             Response response = client.newCall(request).execute();
-            System.out.println(response);
             String responseBody = response.body().string();
             HashMap obj = (HashMap) JSONValue.parse(responseBody);
-            System.out.println(responseBody);
-            System.out.println(obj.get("lakes"));
+
+            new LakesFactory(responseBody);
+
             return responseBody;
         } catch (Exception e) {
             System.out.println(e);
