@@ -54,6 +54,14 @@ public class LakesFactory {
 
                 Log.e("LakesFactory", entry.getClass().toString()); // LinkedHashMap$LinkedEntry
                 Log.e("LakesFactory", entry.getValue().getClass().toString()); // LinkedList
+
+                LinkedList lakes = (LinkedList) entry.getValue();
+
+                Iterator lakesArray = lakes.listIterator();
+
+                while(lakesArray.hasNext()) {
+                    Log.e("LakeFactory", lakesArray.next().toString());
+                }
             }
 
             Log.e("LakesFactory", "==toJSONString()==");
