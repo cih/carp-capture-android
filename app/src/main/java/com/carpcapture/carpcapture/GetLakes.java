@@ -58,7 +58,7 @@ class GetLakes extends AsyncTask<String, String, String> {
         String names[] = {"Hadleigh Res","Blue Lagoon","Piggeries"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(lakeList,
-                android.R.layout.simple_list_item_1, names);
+                R.layout.lake_list_item, R.id.textView1, names);
 
         final ListView listView = (ListView) lakeList.findViewById(R.id.lakes_list);
         listView.setAdapter(adapter);
