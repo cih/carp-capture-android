@@ -64,17 +64,20 @@ class GetLakes extends AsyncTask<String, String, String> {
         ArrayList lakesArray = lakes.convertToIterator();
         Log.e("LAKESARRAY", lakesArray.toString());
 
-//        int i = 0;
-//        for ( ; lakesArray.hasNext() ; ++i ) lakesArray.next();
-
         ArrayList<String> lakeNames = new ArrayList<String>();
+        final ArrayList<String> lakeLat = new ArrayList<String>();
+        final ArrayList<String> lakeLng = new ArrayList<String>();
+        final ArrayList<String> defaultZoom = new ArrayList<String>();
 
         for(int i = 0; i < lakesArray.size(); i++) {
             Log.e("IN LAKE ARRAY LIST", lakesArray.get(i).toString());
 
             HashMap lake = (HashMap) lakesArray.get(i);
 
+            lakeLng.add(lake.get("lng").toString());
+            lakeLat.add(lake.get("lat").toString());
             lakeNames.add(lake.get("name").toString());
+            defaultZoom.add(lake.get("default_zoom").toString());
         }
 
 //        while(lakesArray.hasNext()) {
@@ -87,14 +90,8 @@ class GetLakes extends AsyncTask<String, String, String> {
 //            lakeNames.add(lakeName);
 //        }
 //
-//        Log.e("LAKE NAMES", lakeNames.toString());
-
-        String names[] = {"Hadleigh Res","Blue Lagoon","Piggeries"};
-
         String [] newNames = lakeNames.toArray(new String[lakeNames.size()]);
 
-        Log.e("ORIGINAL LAKE NAMES", names.getClass().toString());
-        Log.e("ORIGINAL LAKE NAMES", names.toString());
         Log.e("LAKE NAMES CLASS", newNames.getClass().toString());
         Log.e("LAKE NAMES", newNames.toString());
 
@@ -108,8 +105,18 @@ class GetLakes extends AsyncTask<String, String, String> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
                 intent = new Intent(lakeList, MapsActivity.class);
-                lakeList.startActivity(intent);
 
+                Log.e("LAKE LAT", lakeLat.toString());
+                Log.e("LAKE LNG", lakeLng.toString());
+                Log.e("POSITION", String.valueOf(position));
+                Log.e("LAT", lakeLat.get(position).toString());
+                Log.e("LNG", lakeLng.get(position).toString());
+                Log.e("ZOOM", defaultZoom.get(position).toString());
+
+                intent.putExtra("ZOOM", defaultZoom.get(position).toString());
+                intent.putExtra("LAT", lakeLat.get(position).toString());
+                intent.putExtra("LNG", lakeLng.get(position).toString());
+                lakeList.startActivity(intent);
             }
         });
     }

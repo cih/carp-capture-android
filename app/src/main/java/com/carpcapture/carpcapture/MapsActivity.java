@@ -2,6 +2,7 @@ package com.carpcapture.carpcapture;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +19,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -38,9 +40,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        String lat = getIntent().getStringExtra("LAT");
+        String lng = getIntent().getStringExtra("LNG");
+        String zoom = getIntent().getStringExtra("ZOOM");
+
+        Log.e("LAT", lat);
+        Log.e("LNG", lng);
+        Log.e("ZOOM", zoom);
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng lake = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+//        mMap.addMarker(new MarkerOptions().position(lake).title("Lake Marker"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lake, Float.valueOf(zoom)));
     }
 }
