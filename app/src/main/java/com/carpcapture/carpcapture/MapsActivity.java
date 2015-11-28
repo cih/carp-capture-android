@@ -23,6 +23,43 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
 
     @Override
+    public boolean predictLocation(MenuItem item){
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.carp_marker);
+
+        String lat = getIntent().getStringExtra("LAT");
+        String lng = getIntent().getStringExtra("LNG");
+        String zoom = getIntent().getStringExtra("ZOOM");
+
+        Log.e("LAT", lat);
+        Log.e("LNG", lng);
+        Log.e("ZOOM", zoom);
+
+        // Add a marker in Sydney and move the camera
+        LatLng lake = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+
+
+        LatLng other = new LatLng(Double.parseDouble("51.5505"), Double.parseDouble("0.5973"));
+
+
+        MarkerOptions markerOptionsOther = new MarkerOptions().position(other)
+                .title("Current Location")
+                .snippet("Thinking of finding some thing...")
+                .icon(icon);
+
+        mMap.addMarker(markerOptionsOther);
+
+
+        MarkerOptions markerOptions = new MarkerOptions().position(lake)
+                .title("Current Location")
+                .snippet("Thinking of finding some thing...")
+                .icon(icon);
+
+        mMap.addMarker(markerOptions);
+
+        return true;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
@@ -80,15 +117,5 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lake, Float.valueOf(zoom)));
-
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.carp_marker);
-
-
-        MarkerOptions markerOptions = new MarkerOptions().position(lake)
-                .title("Current Location")
-                .snippet("Thinking of finding some thing...")
-                .icon(icon);
-
-        mMap.addMarker(markerOptions);
     }
 }

@@ -21,5 +21,6 @@
     <item
         android:id="@+id/action_prediction"
         android:title="Prediction"
+        android:onClick="predictLocation"
         android:orderInCategory="100" app:showAsAction="ifRoom" />
 </menu>

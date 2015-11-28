@@ -12,6 +12,10 @@ import android.view.MenuItem;
  */
 public class MenuActivity extends AppCompatActivity {
 
+    public boolean predictLocation(MenuItem item){
+        return  false;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
