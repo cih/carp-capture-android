@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -119,5 +120,8 @@ class GetLakes extends AsyncTask<String, String, String> {
                 lakeList.startActivity(intent);
             }
         });
+
+        ProgressBar progressBar = (ProgressBar) lakeList.findViewById(R.id.progressBar1);
+        progressBar.setVisibility(View.GONE);
     }
 }
