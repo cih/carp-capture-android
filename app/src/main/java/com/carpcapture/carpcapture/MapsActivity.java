@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +21,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        super.onCreateOptionsMenu(menu);
+
+        MenuItem item = menu.findItem(R.id.action_prediction);
+        item.setVisible(true);
+
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
