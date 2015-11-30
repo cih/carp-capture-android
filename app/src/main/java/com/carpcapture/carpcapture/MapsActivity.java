@@ -21,14 +21,18 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.maps.android.PolyUtil;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private HashMap currentLake = new HashMap();
+
 
     @Override
     public boolean predictLocation(MenuItem item){
@@ -143,6 +147,7 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
         Log.e("LAKE IN VIEW", currentLake.toString());
 
         ArrayList rectangles = (ArrayList) currentLake.get("rectangles");
+        final ArrayList polygons = new ArrayList();
 
         for(int i = 0; i < rectangles.size(); i++) {
             HashMap rectangleHash = (HashMap) rectangles.get(i);
@@ -153,7 +158,6 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
 //            x1 = ?  ;  y1 = ? ;    // First diagonal point
 //            x2 = ?  ;  y2 = ? ;    // Second diagonal point
-
 
             Double xc = (x1 + x2)/2  ;
             Double yc = (y1 + y2)/2  ;    // Center point
@@ -172,10 +176,14 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 //            LatLng sw = new LatLng(x2, y2);
 //            LatLngBounds latLngBounds = new LatLngBounds(ne, sw);
 
+
+            // getPoints may be a better way to store here
             Polygon polygon = mMap.addPolygon(new PolygonOptions()
                     .add(new LatLng(x1, y1), new LatLng(x3, y1), new LatLng(x2, y2), new LatLng(x4, y2), new LatLng(x1, y1))
                     .strokeColor(Color.RED)
                     .fillColor(Color.BLUE));
+
+            polygons.add(polygon);
         }
 
 
@@ -185,5 +193,25 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lakeMarker, Float.valueOf(zoom)));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng arg0) {
+
+                LatLng latLng = new LatLng(arg0.latitude, arg0.longitude);
+
+                Log.e("POLYGONS SIZE", String.valueOf(polygons.size()));
+
+                for(int i = 0; i < polygons.size(); i++) {
+                    Polygon polygon = (Polygon) polygons.get(i);
+
+                    List<LatLng> points = polygon.getPoints();
+
+                    Log.e("", String.valueOf(PolyUtil.containsLocation(latLng, points, true)));
+                    Log.e("arg0", arg0.latitude + "-" + arg0.longitude);
+                }
+            }
+        });
     }
 }
