@@ -173,7 +173,7 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 //            LatLngBounds latLngBounds = new LatLngBounds(ne, sw);
 
             Polygon polygon = mMap.addPolygon(new PolygonOptions()
-                    .add(new LatLng(x1, y1), new LatLng(x3, y3), new LatLng(x2, y2), new LatLng(x4, y4), new LatLng(x1, y1))
+                    .add(new LatLng(x1, y1), new LatLng(x3, y1), new LatLng(x2, y2), new LatLng(x4, y2), new LatLng(x1, y1))
                     .strokeColor(Color.RED)
                     .fillColor(Color.BLUE));
         }
