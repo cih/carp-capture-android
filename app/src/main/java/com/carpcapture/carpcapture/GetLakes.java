@@ -31,6 +31,7 @@ import java.util.Objects;
 class GetLakes extends AsyncTask<String, String, String> {
     private LakesListActivity lakeList;
     List<String> lakeNames = new ArrayList<String>();
+    public static LakesFactory lakesFactory = new LakesFactory("");
 
     public GetLakes(LakesListActivity lakesListActivity) {
        lakeList = lakesListActivity;
@@ -62,6 +63,10 @@ class GetLakes extends AsyncTask<String, String, String> {
         super.onPostExecute(result);
 
         LakesFactory lakes = new LakesFactory(result);
+        lakesFactory = lakes;
+
+        Log.e("SOMETHING", lakes.getClass().toString());
+
         ArrayList lakesArray = lakes.convertToIterator();
         Log.e("LAKESARRAY", lakesArray.toString());
 
@@ -69,12 +74,14 @@ class GetLakes extends AsyncTask<String, String, String> {
         final ArrayList<String> lakeLat = new ArrayList<String>();
         final ArrayList<String> lakeLng = new ArrayList<String>();
         final ArrayList<String> defaultZoom = new ArrayList<String>();
+        final ArrayList<String> ids = new ArrayList<String>();
 
         for(int i = 0; i < lakesArray.size(); i++) {
             Log.e("IN LAKE ARRAY LIST", lakesArray.get(i).toString());
 
             HashMap lake = (HashMap) lakesArray.get(i);
 
+            ids.add(lake.get("id").toString());
             lakeLng.add(lake.get("lng").toString());
             lakeLat.add(lake.get("lat").toString());
             lakeNames.add(lake.get("name").toString());
@@ -114,6 +121,7 @@ class GetLakes extends AsyncTask<String, String, String> {
                 Log.e("LNG", lakeLng.get(position).toString());
                 Log.e("ZOOM", defaultZoom.get(position).toString());
 
+                intent.putExtra("ID", ids.get(position).toString());
                 intent.putExtra("ZOOM", defaultZoom.get(position).toString());
                 intent.putExtra("LAT", lakeLat.get(position).toString());
                 intent.putExtra("LNG", lakeLng.get(position).toString());

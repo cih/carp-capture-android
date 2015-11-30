@@ -1,5 +1,6 @@
 package com.carpcapture.carpcapture;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -16,11 +17,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private HashMap currentLake = new HashMap();
 
     @Override
     public boolean predictLocation(MenuItem item){
@@ -106,16 +114,76 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
         String lat = getIntent().getStringExtra("LAT");
         String lng = getIntent().getStringExtra("LNG");
         String zoom = getIntent().getStringExtra("ZOOM");
+        String id = getIntent().getStringExtra("ID");
 
         Log.e("LAT", lat);
         Log.e("LNG", lng);
         Log.e("ZOOM", zoom);
+        Log.e("ID", id);
+
+
+        Log.e("MAP FACTORY", GetLakes.lakesFactory.convertToIterator().toString());
+
+        ArrayList lakesArray = GetLakes.lakesFactory.convertToIterator();
+
+        for(int i = 0; i < lakesArray.size(); i++) {
+            HashMap lakeHash = (HashMap) lakesArray.get(i);
+
+            Log.e("ID", id);
+            Log.e("ID CLASS", id.toString().getClass().toString());
+            Log.e("ID", lakeHash.get("id").toString());
+            Log.e("ID", lakeHash.get("id").toString().getClass().toString());
+
+            if (Integer.parseInt(lakeHash.get("id").toString()) == Integer.parseInt(id)){
+                Log.e("INSIDE", "YES");
+                currentLake = lakeHash;
+            }
+        }
+
+        Log.e("LAKE IN VIEW", currentLake.toString());
+
+        ArrayList rectangles = (ArrayList) currentLake.get("rectangles");
+
+        for(int i = 0; i < rectangles.size(); i++) {
+            HashMap rectangleHash = (HashMap) rectangles.get(i);
+            Double x2 = (Double) rectangleHash.get("north_east_lat");
+            Double y2 = (Double) rectangleHash.get("north_east_lng");
+            Double x1 = (Double) rectangleHash.get("south_west_lat");
+            Double y1 = (Double) rectangleHash.get("south_west_lng");
+
+//            x1 = ?  ;  y1 = ? ;    // First diagonal point
+//            x2 = ?  ;  y2 = ? ;    // Second diagonal point
+
+
+            Double xc = (x1 + x2)/2  ;
+            Double yc = (y1 + y2)/2  ;    // Center point
+            Double xd = (x1 - x2)/2  ;
+            Double yd = (y1 - y2)/2  ;    // Half-diagonal
+
+            Double x3 = xc - yd  ;
+            Double y3 = yc + xd;    // Third corner
+            Double x4 = xc + yd  ;
+            Double y4 = yc - xd;    // Fourth corner
+
+
+            Log.e("HERE", "ADDING POLYGON");
+
+//            LatLng ne = new LatLng(x1, y1);
+//            LatLng sw = new LatLng(x2, y2);
+//            LatLngBounds latLngBounds = new LatLngBounds(ne, sw);
+
+            Polygon polygon = mMap.addPolygon(new PolygonOptions()
+                    .add(new LatLng(x1, y1), new LatLng(x3, y3), new LatLng(x2, y2), new LatLng(x4, y4), new LatLng(x1, y1))
+                    .strokeColor(Color.RED)
+                    .fillColor(Color.BLUE));
+        }
+
 
         // Add a marker in Sydney and move the camera
-        LatLng lake = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+        LatLng lakeMarker = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
 //        mMap.addMarker(new MarkerOptions().position(lake).title("Lake Marker"));
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lake, Float.valueOf(zoom)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lakeMarker, Float.valueOf(zoom)));
     }
 }
