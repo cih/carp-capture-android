@@ -1,5 +1,6 @@
 package com.carpcapture.carpcapture;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -101,6 +102,11 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
         getSupportActionBar().setIcon(R.drawable.carpicon);
     }
 
+    public boolean newCapture() {
+        Intent intent = new Intent(this, CaptureActivity.class);
+        startActivity(intent);
+        return true;
+    }
 
     /**
      * Manipulates the map once available.
@@ -211,6 +217,8 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
                     Log.e("", String.valueOf(PolyUtil.containsLocation(latLng, points, true)));
                     Log.e("arg0", arg0.latitude + "-" + arg0.longitude);
                 }
+
+                newCapture();
             }
         });
     }
