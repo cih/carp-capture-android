@@ -16,6 +16,10 @@ public class MenuActivity extends AppCompatActivity {
         return  false;
     }
 
+    public boolean recordCapture(MenuItem item){
+        return  false;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -24,6 +28,9 @@ public class MenuActivity extends AppCompatActivity {
 
         MenuItem item = menu.findItem(R.id.action_prediction);
         item.setVisible(false);
+
+        MenuItem CaptureItem = menu.findItem(R.id.action_record_capture);
+        CaptureItem.setVisible(false);
 
         return true;
     }

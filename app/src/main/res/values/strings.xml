@@ -8,4 +8,7 @@
     <string name="title_activity_lakes_list">Lakes</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_capture">CaptureActivity</string>
+    <string name="species_message">Species</string>
+    <string name="bait_message">Bait</string>
+    <string name="capture_send">Report Capture</string>
 </resources>

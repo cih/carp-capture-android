@@ -2,6 +2,8 @@ package com.carpcapture.carpcapture;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -34,6 +36,15 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private HashMap currentLake = new HashMap();
 
+    @Override
+    public boolean recordCapture(MenuItem item) {
+        Snackbar snackbar = Snackbar
+                .make(findViewById(android.R.id.content), "Click on the lake to record a capture.", Snackbar.LENGTH_LONG);
+
+        snackbar.show();
+
+        return true;
+    }
 
     @Override
     public boolean predictLocation(MenuItem item){
@@ -80,6 +91,9 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
         MenuItem item = menu.findItem(R.id.action_prediction);
         item.setVisible(true);
+
+        MenuItem captureItem = menu.findItem(R.id.action_record_capture);
+        captureItem.setVisible(true);
 
         return true;
     }

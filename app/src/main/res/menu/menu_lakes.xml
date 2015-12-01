@@ -23,4 +23,10 @@
         android:title="Prediction"
         android:onClick="predictLocation"
         android:orderInCategory="100" app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_record_capture"
+        android:title="Capture"
+        android:onClick="recordCapture"
+        android:orderInCategory="100" app:showAsAction="ifRoom" />
 </menu>

@@ -25,6 +25,9 @@ public class CaptureActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+     // lat lng of click, rectangle id, cature details
     }
 
 }

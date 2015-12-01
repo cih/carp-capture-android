@@ -68,7 +68,7 @@
         <activity
             android:name=".CaptureActivity"
             android:label="@string/title_activity_capture"
-            android:parentActivityName=".LakesActivity"
+            android:parentActivityName=".MapsActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
