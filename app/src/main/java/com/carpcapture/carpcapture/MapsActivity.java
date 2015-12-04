@@ -48,37 +48,44 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     @Override
     public boolean predictLocation(MenuItem item){
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.carp_marker);
+        String lakeId = getIntent().getStringExtra("ID");
 
-        String lat = getIntent().getStringExtra("LAT");
-        String lng = getIntent().getStringExtra("LNG");
-        String zoom = getIntent().getStringExtra("ZOOM");
+        Log.e("LAEK ID", lakeId);
 
-        Log.e("LAT", lat);
-        Log.e("LNG", lng);
-        Log.e("ZOOM", zoom);
+        GetPrediction prediction = new GetPrediction(lakeId);
+        prediction.execute(lakeId);
 
-        // Add a marker in Sydney and move the camera
-        LatLng lake = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
-
-
-        LatLng other = new LatLng(Double.parseDouble("51.5505"), Double.parseDouble("0.5973"));
-
-
-        MarkerOptions markerOptionsOther = new MarkerOptions().position(other)
-                .title("Current Location")
-                .snippet("Thinking of finding some thing...")
-                .icon(icon);
-
-        mMap.addMarker(markerOptionsOther);
-
-
-        MarkerOptions markerOptions = new MarkerOptions().position(lake)
-                .title("Current Location")
-                .snippet("Thinking of finding some thing...")
-                .icon(icon);
-
-        mMap.addMarker(markerOptions);
+//        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.carp_marker);
+//
+//        String lat = getIntent().getStringExtra("LAT");
+//        String lng = getIntent().getStringExtra("LNG");
+//        String zoom = getIntent().getStringExtra("ZOOM");
+//
+//        Log.e("LAT", lat);
+//        Log.e("LNG", lng);
+//        Log.e("ZOOM", zoom);
+//
+//        // Add a marker in Sydney and move the camera
+//        LatLng lake = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+//
+//
+//        LatLng other = new LatLng(Double.parseDouble("51.5505"), Double.parseDouble("0.5973"));
+//
+//
+//        MarkerOptions markerOptionsOther = new MarkerOptions().position(other)
+//                .title("Current Location")
+//                .snippet("Thinking of finding some thing...")
+//                .icon(icon);
+//
+//        mMap.addMarker(markerOptionsOther);
+//
+//
+//        MarkerOptions markerOptions = new MarkerOptions().position(lake)
+//                .title("Current Location")
+//                .snippet("Thinking of finding some thing...")
+//                .icon(icon);
+//
+//        mMap.addMarker(markerOptions);
 
         return true;
     }
