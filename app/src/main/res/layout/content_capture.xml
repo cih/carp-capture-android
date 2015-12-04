@@ -11,6 +11,13 @@
     tools:showIn="@layout/activity_capture"
     tools:context="com.carpcapture.carpcapture.CaptureActivity">
 
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </ImageView>
+
     <EditText android:id="@+id/species_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
