@@ -10,8 +10,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
 import java.io.FileNotFoundException;
 
@@ -37,6 +44,11 @@ public class CaptureActivity extends AppCompatActivity {
 
 
      // lat lng of click, rectangle id, cature details
+    }
+
+    public void uploadCapture(View view) {
+        PostCapture example = new PostCapture(this);
+        example.execute("https://carp-capture-api.herokuapp.com/observations.json");
     }
 
     public void loadImagefromGallery(View view) {
