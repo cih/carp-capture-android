@@ -53,7 +53,7 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
         Log.e("LAEK ID", lakeId);
 
-        GetPrediction prediction = new GetPrediction(lakeId);
+        GetPrediction prediction = new GetPrediction(lakeId, mMap);
         prediction.execute(lakeId);
 
 //        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.carp_marker);
@@ -216,6 +216,7 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
                     .strokeColor(Color.RED)
                     .fillColor(Color.BLUE));
 
+            polygon.setVisible(false);
             polygons.add(polygon);
         }
 
