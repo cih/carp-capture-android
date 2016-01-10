@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -35,6 +36,13 @@ public class CaptureActivity extends AppCompatActivity {
 
         Button picutreButton = (Button) findViewById(R.id.buttonLoadPicture);
         picutreButton.setVisibility(View.GONE);
+
+        EditText species = (EditText) findViewById(R.id.species_message);
+        EditText bait = (EditText) findViewById(R.id.bait_message);
+
+        bait.setVisibility(View.GONE);
+        species.setVisibility(View.GONE);
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
