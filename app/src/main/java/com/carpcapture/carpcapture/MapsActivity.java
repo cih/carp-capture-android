@@ -35,6 +35,7 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private HashMap currentLake = new HashMap();
+    private HashMap currentRectangle = new HashMap();
 
     @Override
     public boolean recordCapture(MenuItem item) {
@@ -125,6 +126,11 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     public boolean newCapture() {
         Intent intent = new Intent(this, CaptureActivity.class);
+
+        intent.putExtra("ID", currentRectangle.get("id").toString());
+        intent.putExtra("MARGIN", currentRectangle.get("margin").toString());
+        intent.putExtra("RELLOC", currentRectangle.get("relative_location").toString());
+
         startActivity(intent);
         return true;
     }
@@ -173,7 +179,7 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
         Log.e("LAKE IN VIEW", currentLake.toString());
 
-        ArrayList rectangles = (ArrayList) currentLake.get("rectangles");
+        final ArrayList rectangles = (ArrayList) currentLake.get("rectangles");
         final ArrayList polygons = new ArrayList();
 
         for(int i = 0; i < rectangles.size(); i++) {
@@ -237,6 +243,16 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
                     Log.e("", String.valueOf(PolyUtil.containsLocation(latLng, points, true)));
                     Log.e("arg0", arg0.latitude + "-" + arg0.longitude);
+
+                    if(PolyUtil.containsLocation(latLng, points, true)){
+                        HashMap rectangle = (HashMap) rectangles.get(i);
+
+                        currentRectangle = rectangle;
+                        Log.e("RECTANGLE >>>>>>>>>>", String.valueOf(rectangle.get("id")));
+                        Log.e("RECTANGLE >>>>>>>>>>", String.valueOf(rectangle.get("relative_location")));
+                        Log.e("RECTANGLE >>>>>>>>>>", String.valueOf(rectangle.get("margin")));
+
+                    }
                 }
 
                 newCapture();
