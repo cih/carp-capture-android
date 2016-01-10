@@ -18,26 +18,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".LakesActivity"
+            android:name=".LakesListActivity"
             android:label="@string/app_name"
+            android:parentActivityName=".LakesActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".CapturesActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".LakesActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.carpcapture.carpcapture.LakesActivity" />
         </activity>
         <activity
-            android:name=".LakesListActivity"
+            android:name=".LakesActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".CapturesActivity"
             android:label="@string/app_name"
             android:parentActivityName=".LakesActivity"
             android:theme="@style/AppTheme.NoActionBar" >
