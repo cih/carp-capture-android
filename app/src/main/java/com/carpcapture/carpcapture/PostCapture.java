@@ -1,6 +1,7 @@
 package com.carpcapture.carpcapture;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -14,6 +15,9 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by chris on 04/12/15.
@@ -88,5 +92,14 @@ public class PostCapture extends AsyncTask<String, String, String> {
                 .make(captureActivity.findViewById(android.R.id.content), "Your capture has been recorded, tight lines!.", Snackbar.LENGTH_LONG);
 
         snackbar.show();
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(captureActivity, LakesListActivity.class);
+                captureActivity.startActivity(intent);
+            }
+        }, 2 * 1000);
     }
 }
