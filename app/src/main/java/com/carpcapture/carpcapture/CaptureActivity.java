@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -31,6 +32,9 @@ public class CaptureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_capture);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button picutreButton = (Button) findViewById(R.id.buttonLoadPicture);
+        picutreButton.setVisibility(View.GONE);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
