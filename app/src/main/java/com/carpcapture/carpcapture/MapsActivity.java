@@ -34,7 +34,8 @@ import java.util.List;
 public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private HashMap currentLake = new HashMap();
+//    private HashMap currentLake = new HashMap();
+    public static HashMap currentLake = new HashMap();
     private HashMap currentRectangle = new HashMap();
 
     @Override
@@ -148,10 +149,29 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        String lat = getIntent().getStringExtra("LAT");
-        String lng = getIntent().getStringExtra("LNG");
-        String zoom = getIntent().getStringExtra("ZOOM");
-        String id = getIntent().getStringExtra("ID");
+        Log.e("CURRENTLAKE", currentLake.toString());
+
+//        String lat = getIntent().getStringExtra("LAT");
+//        String lng = getIntent().getStringExtra("LNG");
+//        String zoom = getIntent().getStringExtra("ZOOM");
+//        String id = getIntent().getStringExtra("ID");
+
+        String id = new String();
+        String lat = new String();
+        String lng = new String();
+        String zoom = new String();
+
+        if(getIntent().getStringExtra("ID") != null){
+            lat = getIntent().getStringExtra("LAT");
+            lng = getIntent().getStringExtra("LNG");
+            zoom = getIntent().getStringExtra("ZOOM");
+            id = getIntent().getStringExtra("ID");
+        } else {
+            lat = currentLake.get("lat").toString();
+            lng = currentLake.get("lng").toString();
+            zoom = currentLake.get("default_zoom").toString();
+            id = currentLake.get("id").toString();
+        }
 
         Log.e("LAT", lat);
         Log.e("LNG", lng);
