@@ -128,9 +128,11 @@ public class MapsActivity extends MenuActivity implements OnMapReadyCallback {
     public boolean newCapture() {
         Intent intent = new Intent(this, CaptureActivity.class);
 
-        intent.putExtra("ID", currentRectangle.get("id").toString());
-        intent.putExtra("MARGIN", currentRectangle.get("margin").toString());
-        intent.putExtra("RELLOC", currentRectangle.get("relative_location").toString());
+        if (currentRectangle.get("id") != null) {
+            intent.putExtra("ID", currentRectangle.get("id").toString());
+            intent.putExtra("MARGIN", currentRectangle.get("margin").toString());
+            intent.putExtra("RELLOC", currentRectangle.get("relative_location").toString());
+        }
 
         startActivity(intent);
         return true;

@@ -38,14 +38,18 @@ public class PostCapture extends AsyncTask<String, String, String> {
 
         JSONObject params = new JSONObject();
         try {
-            String id = captureActivity.getIntent().getStringExtra("ID");
-            String relativeLocation = captureActivity.getIntent().getStringExtra("RELLOC");
-            String margin = captureActivity.getIntent().getStringExtra("MARGIN");
+
+            if(captureActivity.getIntent().getStringExtra("ID") != null) {
+                String id = captureActivity.getIntent().getStringExtra("ID");
+                String relativeLocation = captureActivity.getIntent().getStringExtra("RELLOC");
+                String margin = captureActivity.getIntent().getStringExtra("MARGIN");
 
 
-            params.put("relative_location", relativeLocation);
-            params.put("rectangle_id", id);
-            params.put("margin", margin);
+                params.put("relative_location", relativeLocation);
+                params.put("rectangle_id", id);
+                params.put("margin", margin);
+            }
+
 
         } catch (Exception ex) {
 
